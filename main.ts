@@ -35,12 +35,24 @@ basic.forever(function () {
         basic.showIcon(IconNames.Yes)
         basic.pause(1000)
         basic.clearScreen()
-        basic.showNumber(1)
-        basic.pause(1000)
-        basic.clearScreen()
-        OLED.writeStringNewLine("Plastic")
-        basic.pause(5000)
+        OLED.writeStringNewLine("Does it contain any liquid? Press A (Yes) or B (No)")
+        basic.pause(8000)
         OLED.clear()
+        if (input.buttonIsPressed(Button.A)) {
+            OLED.writeStringNewLine("Unfortunately this cannot be recyclable ")
+            basic.pause(8000)
+            OLED.clear()
+        }
+        if (input.buttonIsPressed(Button.B)) {
+            OLED.writeStringNewLine("This can be recyclable!")
+            basic.pause(8000)
+            OLED.clear()
+            OLED.writeStringNewLine("Plastic")
+            basic.showNumber(1)
+            basic.pause(1000)
+            basic.clearScreen()
+            OLED.clear()
+        }
     } else if (huskylens.isAppear(3, HUSKYLENSResultType_t.HUSKYLENSResultBlock)) {
         basic.showIcon(IconNames.Yes)
         basic.showNumber(1)
