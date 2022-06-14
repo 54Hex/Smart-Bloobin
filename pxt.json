@@ -1,0 +1,27 @@
+{
+    "name": "testinggrounds-1",
+    "description": "",
+    "dependencies": {
+        "core": "*",
+        "radio": "*",
+        "microphone": "*",
+        "Huskylens": "github:dfrobot/pxt-dfrobot_huskylens#v2.0.5",
+        "smarthon-smartcity-kit": "github:smarthon/pxt-smartcity#v0.1.48"
+    },
+    "files": [
+        "main.blocks",
+        "main.ts",
+        "README.md"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "targetVersions": {
+        "target": "4.0.18",
+        "targetId": "microbit"
+    },
+    "supportedTargets": [
+        "microbit"
+    ],
+    "preferredEditor": "blocksprj"
+}
