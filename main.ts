@@ -8,7 +8,6 @@
  * Number 3: Food waste
  */
 pins.digitalWritePin(DigitalPin.P1, 1)
-pins.digitalWritePin(DigitalPin.P2, 2)
 basic.showIcon(IconNames.Angry)
 huskylens.initI2c()
 huskylens.initMode(protocolAlgorithm.OBJECTCLASSIFICATION)
