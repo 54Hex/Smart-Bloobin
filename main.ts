@@ -18,7 +18,7 @@ input.onButtonPressed(Button.A, function () {
 })
 input.onButtonPressed(Button.AB, function () {
     OLED.writeStringNewLine("Shutter open")
-    basic.pause(8000)
+    basic.pause(5000)
     OLED.clear()
     openShutter()
     basic.pause(5000)
@@ -27,11 +27,12 @@ input.onButtonPressed(Button.AB, function () {
 input.onButtonPressed(Button.B, function () {
     OLED.newLine()
     OLED.writeStringNewLine("This can be recyclable!")
-    basic.pause(8000)
-    OLED.clear()
+    OLED.newLine()
     OLED.writeStringNewLine("Plastic")
+    basic.pause(5000)
+    OLED.clear()
     basic.showNumber(1)
-    basic.pause(1000)
+    basic.pause(5000)
     basic.clearScreen()
     OLED.clear()
 })
@@ -64,9 +65,9 @@ basic.forever(function () {
     } else {
         if (huskylens.isAppear(2, HUSKYLENSResultType_t.HUSKYLENSResultBlock)) {
             basic.showIcon(IconNames.Yes)
-            basic.pause(1000)
+            basic.pause(5000)
             OLED.writeStringNewLine("Does it contain any waste? Press A (Yes) or B (No)")
-            basic.pause(8000)
+            basic.pause(5000)
             basic.clearScreen()
             OLED.clear()
         }
