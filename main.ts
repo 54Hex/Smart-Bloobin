@@ -10,11 +10,16 @@
 function closeShutter () {
     pins.servoWritePin(AnalogPin.P0, 0)
 }
-input.onButtonPressed(Button.A, function () {
+function unRecyclable () {
     OLED.newLine()
     OLED.writeStringNewLine("Unfortunately this cannot be recyclable ")
+    basic.showIcon(IconNames.No)
     basic.pause(8000)
     OLED.clear()
+    basic.clearScreen()
+}
+input.onButtonPressed(Button.A, function () {
+    unRecyclable()
 })
 input.onButtonPressed(Button.AB, function () {
     OLED.writeStringNewLine("Shutter open")
@@ -25,6 +30,12 @@ input.onButtonPressed(Button.AB, function () {
     closeShutter()
 })
 input.onButtonPressed(Button.B, function () {
+    Recyclable()
+})
+function openShutter () {
+    pins.servoWritePin(AnalogPin.P0, 180)
+}
+function Recyclable () {
     OLED.newLine()
     OLED.writeStringNewLine("This can be recyclable!")
     OLED.newLine()
@@ -35,9 +46,6 @@ input.onButtonPressed(Button.B, function () {
     basic.pause(5000)
     basic.clearScreen()
     OLED.clear()
-})
-function openShutter () {
-    pins.servoWritePin(AnalogPin.P0, 180)
 }
 OLED.init(128, 64)
 basic.showIcon(IconNames.Angry)
@@ -53,8 +61,6 @@ basic.forever(function () {
     huskylens.request()
     if (huskylens.isAppear(1, HUSKYLENSResultType_t.HUSKYLENSResultBlock)) {
         OLED.writeStringNewLine("Ready")
-        basic.pause(5000)
-        OLED.clear()
         basic.showLeds(`
             . . # . .
             . # . # .
@@ -62,16 +68,14 @@ basic.forever(function () {
             . . # . .
             . . # . .
             `)
-    } else {
-        if (huskylens.isAppear(2, HUSKYLENSResultType_t.HUSKYLENSResultBlock)) {
-            basic.showIcon(IconNames.Yes)
-            basic.pause(5000)
-            OLED.writeStringNewLine("Does it contain any waste? Press A (Yes) or B (No)")
-            basic.pause(5000)
-            basic.clearScreen()
-            OLED.clear()
-        }
-        basic.showIcon(IconNames.No)
+        basic.pause(5000)
+        OLED.clear()
+    }
+    if (huskylens.isAppear(2, HUSKYLENSResultType_t.HUSKYLENSResultBlock)) {
+        basic.showIcon(IconNames.Yes)
+        OLED.writeStringNewLine("Does it contain any waste? Press A (Yes) or B (No)")
+        basic.pause(5000)
         basic.clearScreen()
+        OLED.clear()
     }
 })
