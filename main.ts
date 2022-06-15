@@ -28,14 +28,14 @@ function foodWaste () {
     OLED.clear()
 }
 input.onButtonPressed(Button.A, function () {
-    notRecyclable()
+    foodWaste()
 })
 function openShutter2 () {
     pins.servoWritePin(AnalogPin.P1, 180)
 }
 function notRecyclable () {
     OLED.newLine()
-    OLED.writeStringNewLine("Does this contains any food? Press A+B (Yes) Press A (No)")
+    OLED.writeStringNewLine("Does this contains any food? Press A (Yes) else wait")
     basic.pause(5000)
     OLED.clear()
     OLED.writeStringNewLine("Unfortunately this cannot be recyclable ")
@@ -50,9 +50,6 @@ function notRecyclable () {
     basic.pause(5000)
     basic.clearScreen()
 }
-input.onButtonPressed(Button.AB, function () {
-    foodWaste()
-})
 input.onButtonPressed(Button.B, function () {
     Recyclable()
 })
@@ -110,14 +107,14 @@ basic.forever(function () {
     }
     if (huskylens.isAppear(2, HUSKYLENSResultType_t.HUSKYLENSResultBlock)) {
         basic.showIcon(IconNames.Yes)
-        OLED.writeStringNewLine("Does it contain any waste? Press A (Yes) or B (No)")
+        OLED.writeStringNewLine("Does it contain any food waste? Press A (Yes) or B (No)")
         basic.pause(5000)
         basic.clearScreen()
         OLED.clear()
     }
     if (huskylens.isAppear(3, HUSKYLENSResultType_t.HUSKYLENSResultBlock)) {
-        basic.showIcon(IconNames.Yes)
-        OLED.writeStringNewLine("Does it contain any waste? Press A (Yes) or B (No)")
+        basic.showIcon(IconNames.No)
+        notRecyclable()
         basic.pause(5000)
         basic.clearScreen()
         OLED.clear()
