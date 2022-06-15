@@ -50,6 +50,9 @@ function notRecyclable () {
     basic.pause(5000)
     basic.clearScreen()
 }
+input.onButtonPressed(Button.AB, function () {
+    notRecyclable()
+})
 input.onButtonPressed(Button.B, function () {
     Recyclable()
 })
@@ -61,7 +64,7 @@ function openShutter () {
 }
 function Recyclable () {
     OLED.newLine()
-    OLED.writeStringNewLine("Does this contains any food? Press A+B (Yes) Press A (No)")
+    OLED.writeStringNewLine("Does this contains any food? Press A (Yes) Press A+B (No)")
     basic.pause(5000)
     OLED.clear()
     OLED.writeStringNewLine("This can be Recyclable!")
