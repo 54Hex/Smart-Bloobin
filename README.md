@@ -8,7 +8,7 @@ This image may take a few minutes to refresh.
 
 ![A rendered view of the blocks](https://github.com/54hex/testinggrounds-1/raw/master/.github/makecode/blocks.png)
 
-### Welcome.
+## Welcome.
 
 
 This MakeCode project is used for some Micro:Bit project that uses the Boson kit. 
