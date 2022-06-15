@@ -1,23 +1,6 @@
 
 > Open this page at [https://54hex.github.io/testinggrounds-1/](https://54hex.github.io/testinggrounds-1/)
 
-## Use as Extension
-
-This repository can be added as an **extension** in MakeCode.
-
-* open [https://makecode.microbit.org/](https://makecode.microbit.org/)
-* click on **New Project**
-* click on **Extensions** under the gearwheel menu
-* search for **https://github.com/54hex/testinggrounds-1** and import
-
-## Edit this project ![Build status badge](https://github.com/54hex/testinggrounds-1/workflows/MakeCode/badge.svg)
-
-To edit this repository in MakeCode.
-
-* open [https://makecode.microbit.org/](https://makecode.microbit.org/)
-* click on **Import** then click on **Import URL**
-* paste **https://github.com/54hex/testinggrounds-1** and click import
-
 ## Blocks preview
 
 This image shows the blocks code from the last commit in master.
@@ -25,7 +8,16 @@ This image may take a few minutes to refresh.
 
 ![A rendered view of the blocks](https://github.com/54hex/testinggrounds-1/raw/master/.github/makecode/blocks.png)
 
-#### Metadata (used for search, rendering)
+### Welcome.
 
-* for PXT/microbit
-<script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
+
+This MakeCode project is used for some Micro:Bit project that uses the Boson kit. 
+External extensions used: 
+Huskylens
+OLED Panel I2C 
+(Black: GND, Red: VCC Power, Blue: SCL, Green: SDA) 
+
+
+## Extras - Credits 
+
+Malrique, Natalie, Irene, Naomi & Ms Goh 
