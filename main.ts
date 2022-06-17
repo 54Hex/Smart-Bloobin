@@ -40,6 +40,7 @@ function notRecyclable () {
     OLED.writeStringNewLine("Does this contains any food? Press A+B (Yes) else wait")
     basic.pause(10000)
     OLED.clear()
+    OLED.newLine()
     OLED.writeStringNewLine("Unfortunately this cannot be recyclable ")
     basic.showIcon(IconNames.Sad)
     basic.pause(10000)
@@ -93,7 +94,7 @@ huskylens.writeName(1, "Env")
 basic.pause(100)
 huskylens.writeName(2, "Plastic")
 basic.pause(100)
-huskylens.writeName(3, "Styrofoam")
+huskylens.writeName(3, "Apple")
 basic.showIcon(IconNames.Square)
 basic.forever(function () {
     music.setVolume(100)
@@ -117,6 +118,12 @@ basic.forever(function () {
         OLED.clear()
     }
     if (huskylens.isAppear(3, HUSKYLENSResultType_t.HUSKYLENSResultBlock)) {
+        foodWaste()
+        basic.pause(5000)
+        basic.clearScreen()
+        OLED.clear()
+    }
+    if (huskylens.isAppear(4, HUSKYLENSResultType_t.HUSKYLENSResultBlock)) {
         notRecyclable()
         basic.pause(5000)
         basic.clearScreen()
