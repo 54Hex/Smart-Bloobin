@@ -18,7 +18,10 @@ function openShutter3 () {
     pins.servoWritePin(AnalogPin.P2, 2)
 }
 function foodWaste () {
+    OLED.newLine()
     OLED.writeStringNewLine("Please dispose all your food waste!")
+    basic.pause(5000)
+    OLED.clear()
     OLED.newLine()
     OLED.writeStringNewLine("Please wait for the shutter to open.")
     basic.showNumber(3)
@@ -100,9 +103,9 @@ huskylens.writeName(1, "Env")
 basic.pause(100)
 huskylens.writeName(2, "Plastic")
 basic.pause(100)
-huskylens.writeName(3, "Apple")
+huskylens.writeName(3, "Battery")
 basic.pause(100)
-huskylens.writeName(4, "Battery")
+huskylens.writeName(4, "Plastic (Candy)")
 basic.showIcon(IconNames.Square)
 basic.forever(function () {
     music.setVolume(100)
@@ -119,20 +122,20 @@ basic.forever(function () {
         basic.pause(5000)
         OLED.clear()
     }
-    if (huskylens.isAppear(2, HUSKYLENSResultType_t.HUSKYLENSResultBlock)) {
+    if (huskylens.isAppear(2, HUSKYLENSResultType_t.HUSKYLENSResultBlock) || huskylens.isAppear(4, HUSKYLENSResultType_t.HUSKYLENSResultBlock)) {
         Recyclable()
         basic.pause(5000)
         basic.clearScreen()
         OLED.clear()
     }
     if (huskylens.isAppear(3, HUSKYLENSResultType_t.HUSKYLENSResultBlock)) {
-        foodWaste()
+        notRecyclable()
         basic.pause(5000)
         basic.clearScreen()
         OLED.clear()
     }
-    if (huskylens.isAppear(4, HUSKYLENSResultType_t.HUSKYLENSResultBlock)) {
-        notRecyclable()
+    if (huskylens.isAppear(5, HUSKYLENSResultType_t.HUSKYLENSResultBlock)) {
+        foodWaste()
         basic.pause(5000)
         basic.clearScreen()
         OLED.clear()
