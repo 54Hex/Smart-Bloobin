@@ -11,10 +11,11 @@ This image may take a few minutes to refresh.
 ## Welcome.
 <img src = "https://img.shields.io/badge/micro:bit-00ED00?style=for-the-badge&logo=micro:bit&logoColor=white">
 
-This MakeCode project is used for some Micro:Bit project that uses the Boson kit. 
-External extensions used: 
+This MakeCode project is used for a Micro:Bit competiton/project organised by the National Library Board that uses the Boson kit. 
 
+External extensions used: 
 *Boson Expansion Board (With Huskylens, 4Port)* 
+
 - Huskylens (v 0.5.1a Norm) 
 - OLED Panel I2C 
 (Black: GND, Red: VCC Power, Blue: SCL, Green: SDA) 
