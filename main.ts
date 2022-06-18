@@ -18,6 +18,7 @@ function openShutter3 () {
     pins.servoWritePin(AnalogPin.P2, 2)
 }
 function foodWaste () {
+    OLED.clear()
     OLED.newLine()
     OLED.writeStringNewLine("Please dispose all your food waste!")
     basic.pause(5000)
@@ -41,25 +42,28 @@ function openShutter2 () {
     pins.servoWritePin(AnalogPin.P1, 180)
 }
 function notRecyclable () {
-    OLED.newLine()
     OLED.writeStringNewLine("Does this contains any food? Press A+B (Yes) else wait")
     basic.pause(10000)
     OLED.clear()
-    OLED.newLine()
-    OLED.writeStringNewLine("Unfortunately this cannot be recyclable. ")
-    basic.showNumber(1)
-    OLED.newLine()
-    OLED.writeStringNewLine("Please wait for the shutter to open.")
-    basic.pause(10000)
-    OLED.clear()
-    OLED.writeStringNewLine("Shutter open")
-    openShutter()
-    basic.pause(5000)
-    OLED.clear()
-    OLED.writeStringNewLine("Shutter closing")
-    closeShutter()
-    basic.pause(5000)
-    basic.clearScreen()
+    if (input.buttonIsPressed(Button.AB)) {
+        foodWaste()
+    } else {
+        OLED.newLine()
+        OLED.writeStringNewLine("Unfortunately this cannot be recyclable. ")
+        basic.showNumber(1)
+        OLED.newLine()
+        OLED.writeStringNewLine("Please wait for the shutter to open.")
+        basic.pause(10000)
+        OLED.clear()
+        OLED.writeStringNewLine("Shutter open")
+        openShutter()
+        basic.pause(5000)
+        OLED.clear()
+        OLED.writeStringNewLine("Shutter closing")
+        closeShutter()
+        basic.pause(5000)
+        basic.clearScreen()
+    }
 }
 input.onButtonPressed(Button.AB, function () {
     foodWaste()
@@ -71,12 +75,13 @@ function openShutter () {
     pins.servoWritePin(AnalogPin.P0, 180)
 }
 function Recyclable () {
-    OLED.newLine()
-    OLED.writeStringNewLine("Does this contains any food? Press A+B (Yes) else Press B")
+    OLED.writeStringNewLine("Does this contains any food? Press A+B (Yes) else wait")
     basic.pause(10000)
     OLED.clear()
-    if (input.buttonIsPressed(Button.B)) {
-        OLED.clear()
+    if (input.buttonIsPressed(Button.AB)) {
+        foodWaste()
+    } else {
+        OLED.newLine()
         OLED.writeStringNewLine("This can be Recyclable!")
         OLED.newLine()
         OLED.writeStringNewLine("Please wait for the shutter to open.")
@@ -129,7 +134,6 @@ basic.forever(function () {
         Recyclable()
         basic.pause(5000)
         basic.clearScreen()
-        OLED.clear()
     }
     if (huskylens.isAppear(3, HUSKYLENSResultType_t.HUSKYLENSResultBlock)) {
         notRecyclable()
