@@ -13,9 +13,10 @@ This image may take a few minutes to refresh.
 
 This MakeCode project is used for some Micro:Bit project that uses the Boson kit. 
 External extensions used: 
-Huskylens (v 0.5.1a Norm) 
-OLED Panel I2C (Black: GND, Red: VCC Power, Blue: SCL, Green: SDA) 
-x3 Boson servos 
+- Huskylens (v 0.5.1a Norm) 
+- OLED Panel I2C 
+- (Black: GND, Red: VCC Power, Blue: SCL, Green: SDA) 
+- x3 Boson servos 
 
 
 
