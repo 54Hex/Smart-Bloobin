@@ -15,89 +15,79 @@ function closeShutter () {
     pins.servoWritePin(AnalogPin.P0, 0)
 }
 function openShutter3 () {
-    pins.servoWritePin(AnalogPin.P2, 2)
+    pins.servoWritePin(AnalogPin.P2, 0)
 }
 function foodWaste () {
     OLED.clear()
     OLED.newLine()
-    OLED.writeStringNewLine("Please dispose all your food waste!")
+    OLED.writeStringNewLine("Please wait (:")
     basic.pause(5000)
     OLED.clear()
-    OLED.newLine()
-    OLED.writeStringNewLine("Please wait for the shutter to open.")
-    basic.showNumber(3)
-    basic.pause(10000)
+    OLED.writeStringNewLine("Shutter opening")
     OLED.clear()
-    OLED.writeStringNewLine("Shutter open")
     openShutter3()
+    OLED.writeStringNewLine("Please dispose all food waste.")
     basic.pause(5000)
     OLED.clear()
     OLED.writeStringNewLine("Shutter closing")
     closeShutter3()
     basic.pause(5000)
+    OLED.newLine()
+    OLED.writeStringNewLine("Thank you! <3")
     OLED.clear()
     basic.clearScreen()
 }
+input.onButtonPressed(Button.A, function () {
+    foodWaste()
+})
 function openShutter2 () {
     pins.servoWritePin(AnalogPin.P1, 180)
 }
 function notRecyclable () {
-    OLED.writeStringNewLine("Does this contains any food? Press A+B (Yes) else wait")
+    OLED.newLine()
+    OLED.writeStringNewLine("This cannot be recycled")
+    OLED.newLine()
+    OLED.writeStringNewLine("Please wait for the shutter to open.")
     basic.pause(10000)
     OLED.clear()
-    if (input.buttonIsPressed(Button.AB)) {
-        foodWaste()
-    } else {
-        OLED.newLine()
-        OLED.writeStringNewLine("Unfortunately this cannot be recyclable. ")
-        basic.showNumber(1)
-        OLED.newLine()
-        OLED.writeStringNewLine("Please wait for the shutter to open.")
-        basic.pause(10000)
-        OLED.clear()
-        OLED.writeStringNewLine("Shutter open")
-        openShutter()
-        basic.pause(5000)
-        OLED.clear()
-        OLED.writeStringNewLine("Shutter closing")
-        closeShutter()
-        basic.pause(5000)
-        basic.clearScreen()
-    }
+    OLED.writeStringNewLine("Shutter opening")
+    openShutter()
+    basic.pause(5000)
+    OLED.clear()
+    OLED.writeStringNewLine("Shutter closing")
+    closeShutter()
+    basic.pause(5000)
+    basic.clearScreen()
 }
 input.onButtonPressed(Button.AB, function () {
-    foodWaste()
+    notRecyclable()
+})
+input.onButtonPressed(Button.B, function () {
+    Recyclable()
 })
 function closeShutter2 () {
-    pins.servoWritePin(AnalogPin.P1, 1)
+    pins.servoWritePin(AnalogPin.P1, 0)
 }
 function openShutter () {
     pins.servoWritePin(AnalogPin.P0, 180)
 }
 function Recyclable () {
-    OLED.writeStringNewLine("Does this contains any food? Press A+B (Yes) else wait")
-    basic.pause(10000)
     OLED.clear()
-    if (input.buttonIsPressed(Button.AB)) {
-        foodWaste()
-    } else {
-        OLED.newLine()
-        OLED.writeStringNewLine("This can be Recyclable!")
-        OLED.newLine()
-        OLED.writeStringNewLine("Please wait for the shutter to open.")
-        basic.showNumber(2)
-        basic.pause(10000)
-        OLED.clear()
-        OLED.writeStringNewLine("Shutter open")
-        openShutter2()
-        basic.pause(5000)
-        OLED.clear()
-        OLED.writeStringNewLine("Shutter closing")
-        closeShutter2()
-        basic.pause(5000)
-        OLED.clear()
-        basic.clearScreen()
-    }
+    OLED.newLine()
+    OLED.writeStringNewLine("Kindly rinse first <3")
+    OLED.newLine()
+    OLED.writeStringNewLine("This is recyclable!")
+    basic.pause(5000)
+    OLED.clear()
+    OLED.writeStringNewLine("Shutter opening")
+    openShutter2()
+    basic.pause(5000)
+    OLED.clear()
+    OLED.writeStringNewLine("Shutter closing")
+    closeShutter2()
+    basic.pause(5000)
+    OLED.clear()
+    basic.clearScreen()
 }
 function closeShutter3 () {
     pins.servoWritePin(AnalogPin.P2, 180)
@@ -111,40 +101,37 @@ huskylens.writeName(1, "Env")
 basic.pause(100)
 huskylens.writeName(2, "Plastic")
 basic.pause(100)
-huskylens.writeName(3, "Battery")
+huskylens.writeName(3, "Tissue Paper")
 basic.pause(100)
-huskylens.writeName(4, "Plastic (Candy)")
+huskylens.writeName(4, "Food Waste")
 basic.showIcon(IconNames.Square)
 basic.forever(function () {
-    music.setVolume(100)
     huskylens.request()
     if (huskylens.isAppear(1, HUSKYLENSResultType_t.HUSKYLENSResultBlock)) {
         OLED.writeStringNewLine("Ready")
-        basic.showLeds(`
-            . . # . .
-            . # . # .
-            . . . # .
-            . . # . .
-            . . # . .
-            `)
-        basic.pause(5000)
+        OLED.newLine()
+        OLED.writeStringNewLine("Place item")
+        basic.showIcon(IconNames.Happy)
+        basic.pause(10000)
         OLED.clear()
     }
-    if (huskylens.isAppear(2, HUSKYLENSResultType_t.HUSKYLENSResultBlock) || huskylens.isAppear(4, HUSKYLENSResultType_t.HUSKYLENSResultBlock)) {
-        Recyclable()
-        basic.pause(5000)
-        basic.clearScreen()
+    if (huskylens.isAppear(2, HUSKYLENSResultType_t.HUSKYLENSResultBlock)) {
+        OLED.writeStringNewLine("Is there food?")
+        OLED.newLine()
+        OLED.writeStringNewLine("If yes, press A")
+        OLED.newLine()
+        OLED.writeStringNewLine("If no, press B")
+        basic.pause(10000)
+        OLED.clear()
     }
     if (huskylens.isAppear(3, HUSKYLENSResultType_t.HUSKYLENSResultBlock)) {
-        notRecyclable()
-        basic.pause(5000)
-        basic.clearScreen()
+        OLED.writeStringNewLine("Does this contains any food? Press A+B (Yes) else press B")
+        basic.pause(10000)
         OLED.clear()
     }
-    if (huskylens.isAppear(5, HUSKYLENSResultType_t.HUSKYLENSResultBlock)) {
+    if (huskylens.isAppear(4, HUSKYLENSResultType_t.HUSKYLENSResultBlock)) {
         foodWaste()
-        basic.pause(5000)
-        basic.clearScreen()
+        basic.pause(10000)
         OLED.clear()
     }
 })
