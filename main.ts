@@ -15,7 +15,7 @@ function closeShutter () {
     pins.servoWritePin(AnalogPin.P0, 0)
 }
 function openShutter3 () {
-    pins.servoWritePin(AnalogPin.P2, 0)
+    pins.servoWritePin(AnalogPin.P1, 45)
 }
 function foodWaste () {
     OLED.clear()
@@ -25,15 +25,16 @@ function foodWaste () {
     OLED.clear()
     OLED.newLine()
     OLED.writeStringNewLine("Shutter opening")
-    openShutter3()
+    OLED.newLine()
     OLED.writeStringNewLine("Please dispose all food waste.")
+    openShutter3()
     basic.pause(10000)
     OLED.clear()
     OLED.writeStringNewLine("Shutter closing")
-    closeShutter3()
-    basic.pause(5000)
     OLED.newLine()
     OLED.writeStringNewLine("Thank you! <3")
+    closeShutter3()
+    basic.pause(5000)
     OLED.clear()
     basic.clearScreen()
 }
@@ -41,7 +42,7 @@ input.onButtonPressed(Button.A, function () {
     foodWaste()
 })
 function openShutter2 () {
-    pins.servoWritePin(AnalogPin.P1, 45)
+    pins.servoWritePin(AnalogPin.P2, 45)
 }
 function notRecyclable () {
     OLED.clear()
@@ -71,7 +72,7 @@ input.onButtonPressed(Button.B, function () {
     Recyclable()
 })
 function closeShutter2 () {
-    pins.servoWritePin(AnalogPin.P1, 0)
+    pins.servoWritePin(AnalogPin.P2, 0)
 }
 function haveYouRinsed () {
     pins.digitalWritePin(DigitalPin.P8, 1)
@@ -101,7 +102,7 @@ function Recyclable () {
     basic.clearScreen()
 }
 function closeShutter3 () {
-    pins.servoWritePin(AnalogPin.P2, 45)
+    pins.servoWritePin(AnalogPin.P1, 0)
 }
 OLED.init(128, 64)
 basic.showIcon(IconNames.Angry)
@@ -132,7 +133,7 @@ basic.forever(function () {
         OLED.writeStringNewLine("If yes, press A")
         OLED.newLine()
         OLED.writeStringNewLine("If no, press B")
-        basic.pause(60000)
+        basic.pause(15000)
         OLED.clear()
     }
     if (huskylens.isAppear(3, HUSKYLENSResultType_t.HUSKYLENSResultBlock) || huskylens.isAppear(4, HUSKYLENSResultType_t.HUSKYLENSResultBlock)) {
@@ -141,7 +142,7 @@ basic.forever(function () {
         OLED.writeStringNewLine("If yes, press A")
         OLED.newLine()
         OLED.writeStringNewLine("If no, press A and B")
-        basic.pause(60000)
+        basic.pause(15000)
         OLED.clear()
     }
     if (huskylens.isAppear(5, HUSKYLENSResultType_t.HUSKYLENSResultBlock)) {
